@@ -5,11 +5,9 @@ import com.seauf.user.interfs.UserService;
 import com.seauf.user.po.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
 @Service
-@Configuration
 public class UserServiceImpl implements UserService {
 
     @Autowired

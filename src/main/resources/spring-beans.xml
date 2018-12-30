@@ -6,4 +6,11 @@
 
     <!--spring扫包-->
     <context:component-scan base-package="com.seauf.*"/>
+
+    <!--<bean id="myInvocationHandler" class="com.seauf.proxy.MyInvocationHandler">-->
+        <!--<property name="target" ref="userService"/>-->
+    <!--</bean>-->
+
+    <!--<bean id="userService" class="com.seauf.user.service.UserServiceImpl"/>-->
+    <!--<bean id="studentService" class="com.seauf.user.service.StudentServiceImpl"/>-->
 </beans>
