@@ -2,15 +2,31 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+">
 
     <!--spring扫包-->
     <context:component-scan base-package="com.seauf.*"/>
 
-    <!--<bean id="myInvocationHandler" class="com.seauf.proxy.MyInvocationHandler">-->
-        <!--<property name="target" ref="userService"/>-->
-    <!--</bean>-->
+    <bean id="tx" class="com.seauf.tx.TransactionManager"/>
 
-    <!--<bean id="userService" class="com.seauf.user.service.UserServiceImpl"/>-->
-    <!--<bean id="studentService" class="com.seauf.user.service.StudentServiceImpl"/>-->
+    <aop:aspectj-autoproxy/>
+
+    <!--<aop:config>-->
+        <!--&lt;!&ndash;用tx方法增强&ndash;&gt;-->
+        <!--<aop:aspect ref="tx">-->
+            <!--&lt;!&ndash;配置增强的范围&ndash;&gt;-->
+            <!--<aop:pointcut id="txpoint" expression="execution(* com.seauf..service..*(..))"/>-->
+            <!--&lt;!&ndash;配置增强的时间点&ndash;&gt;-->
+            <!--&lt;!&ndash;<aop:before method="begin" pointcut-ref="txpoint"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<aop:after-returning method="commit" pointcut-ref="txpoint"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<aop:after-throwing method="rollback" pointcut-ref="txpoint"/>&ndash;&gt;-->
+            <!--<aop:around method="around" pointcut-ref="txpoint"/>-->
+        <!--</aop:aspect>-->
+    <!--</aop:config>-->
+
 </beans>

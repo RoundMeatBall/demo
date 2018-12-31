@@ -1,5 +1,7 @@
 package com.seauf.user.po;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Date;
 
 /**
@@ -7,6 +9,7 @@ import java.util.Date;
 * @create: 2018/12/28
 * @description:
 **/
+@Component
 public class User {
 
     private String name;
