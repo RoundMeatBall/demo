@@ -12,7 +12,7 @@ import java.util.Date;
 public class LogUtil {
 
     public static void writeLog(String methodName){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd mm:HH:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         System.out.println(sdf.format(new Date()) +"调用了"+methodName+"方法");
     }
 }

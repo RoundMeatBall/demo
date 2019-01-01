@@ -65,8 +65,7 @@ public class ExampleTest<T> extends BaseTest{
 
     @Test
     public void testGetUserInfo(){
-        userService.throwE();
-        System.out.println(userService.getClass());
+        userService.getUserInfo();
     }
 
 

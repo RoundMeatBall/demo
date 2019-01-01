@@ -16,11 +16,11 @@ public class TransactionManager {
 
 //
     @Pointcut("execution(* com.seauf..service..*(..))")
-    public void txPoint(){
+    public void tx(){
 
     }
 
-    @Before("txPoint()")
+//    @Before("tx()")
     public void begin(JoinPoint joinPoint){
         LogUtil.writeLog("事务开始");
         System.out.println("代理对象"+joinPoint.getThis().getClass());
@@ -31,17 +31,17 @@ public class TransactionManager {
 
     };
 
-    @AfterReturning("txPoint()")
+//    @AfterReturning("tx()")
     public void commit(JoinPoint joinPoint){
         LogUtil.writeLog("事务提交");
     };
 
-    @AfterThrowing(value = "txPoint()",throwing = "ex")
+//    @AfterThrowing(value = "tx()",throwing = "ex")
     public void rollback(JoinPoint joinPoint,Throwable ex){
         LogUtil.writeLog("事务回滚");
     };
 
-//    @Around("txPoint()")
+    @Around("tx()")
     public void around(ProceedingJoinPoint pjp){
         Object object = null;
         //前置增强
