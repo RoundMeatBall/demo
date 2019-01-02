@@ -11,10 +11,4 @@ public class UserServiceImpl implements UserService {
         return "user";
     }
 
-    public String throwE(){
-        int i = 1/0;
-        System.out.println("抛出异常");
-        return "抛出异常";
-    }
-
 }
