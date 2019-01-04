@@ -1,4 +1,5 @@
 import com.seauf.proxy.MyInvocationHandler;
+import com.seauf.user.dal.UserMapper;
 import com.seauf.user.interfs.StudentService;
 import com.seauf.user.interfs.UserService;
 import com.seauf.util.LogAdvice;
@@ -24,6 +25,8 @@ public class ExampleTest<T> extends BaseTest{
     private StudentService studentService;
     @Autowired
     private LogAdvice logAdvice;
+    @Autowired
+    private UserMapper userMapper;
 
     //动态代理
     @Test
@@ -33,11 +36,12 @@ public class ExampleTest<T> extends BaseTest{
         UserService proxy = myInvocationHandler.getProxyObject(userService);
         proxy.getUserInfo();
         System.out.println("----------"+studentService.getStudentInfo());
-        System.out.println("----------"+applicationContex.getBean("studentService"));
+        System.out.println("----------"+applicationContex.getBean("studentServiceImpl"));
     }
 
     @Test
     public void testLogAdvice(){
+        userMapper.getUser();
         UserService proxy = logAdvice.getProxyInstance(userService);
         System.out.println(proxy.getClass());
         proxy.getUserInfo();
@@ -66,6 +70,13 @@ public class ExampleTest<T> extends BaseTest{
     @Test
     public void testGetUserInfo(){
         userService.getUserInfo();
+    }
+
+    @Test
+    public void testCreateUser(){
+//        ApplicationContext applicationContex = new ClassPathXmlApplicationContext("spring-beans.xml","data-source.xml");
+//        System.out.println(applicationContex.getBean("userMapper"));
+        userService.createUser();
     }
 
 
