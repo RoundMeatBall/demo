@@ -1,4 +1,4 @@
-package com.seauf.user.dal;
+package com.seauf.user.dao;
 
 import com.seauf.annotation.MyBatisRepository;
 import com.seauf.user.po.User;
@@ -13,5 +13,5 @@ public interface UserMapper {
 
     User getUser();
 
-    long insert(@Param("mapper/user") User user);
+    long insert(@Param("user") User user);
 }

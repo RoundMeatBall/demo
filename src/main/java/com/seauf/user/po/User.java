@@ -16,17 +16,20 @@ public class User {
 
     private String name;
 
-    private Integer age;
+    private String nickName;
 
     private Date birth;
+
+    private Long createdBy;
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", age=" + age +
+                ", nickName='" + nickName + '\'' +
                 ", birth=" + birth +
+                ", createdBy=" + createdBy +
                 '}';
     }
 
@@ -46,12 +49,12 @@ public class User {
         this.name = name;
     }
 
-    public Integer getAge() {
-        return age;
+    public String getNickName() {
+        return nickName;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
     public Date getBirth() {
@@ -60,5 +63,13 @@ public class User {
 
     public void setBirth(Date birth) {
         this.birth = birth;
+    }
+
+    public Long getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(Long createdBy) {
+        this.createdBy = createdBy;
     }
 }
