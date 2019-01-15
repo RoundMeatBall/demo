@@ -2,6 +2,7 @@ import com.seauf.proxy.MyInvocationHandler;
 import com.seauf.user.dao.UserMapper;
 import com.seauf.user.interfs.StudentService;
 import com.seauf.user.interfs.UserService;
+import com.seauf.user.po.User;
 import com.seauf.util.LogAdvice;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -84,7 +85,7 @@ public class ExampleTest<T> extends BaseTest{
 
     @Test
     public void testSqlSession(){
-        ApplicationContext applicationContex = new ClassPathXmlApplicationContext("spring-beans.xml","data-source.xml");
+        ApplicationContext applicationContex = new ClassPathXmlApplicationContext("spring-beans.xml");
         System.out.println(applicationContex.getBean("userMapper"));
 //        userService.createUser();
         //读取mybatis-config.xml文件
@@ -95,10 +96,24 @@ public class ExampleTest<T> extends BaseTest{
             e.printStackTrace();
         }
         //初始化mybatis,创建SqlSessionFactory类的实例
-        SqlSessionFactory sqlSessionFactory =  new SqlSessionFactoryBuilder().build(resourceAsStream);
+        SqlSessionFactory sqlSessionFactory=null;
+        sqlSessionFactory=new SqlSessionFactoryBuilder().build(resourceAsStream);
         //创建session实例
-        SqlSession session = sqlSessionFactory.openSession();
-        session.getMapper(UserMapper.class).getUser();
+        SqlSession sqlSession=null;
+        try {
+            sqlSession=sqlSessionFactory.openSession();
+            UserMapper userMapper=sqlSession.getMapper(UserMapper.class);
+            User user=userMapper.getUser();
+            System.out.println(user.getId()+":"+user.getName()+":"+user.getBirth());
+            sqlSession.commit();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            sqlSession.rollback();
+            e.printStackTrace();
+        }finally {
+            sqlSession.close();
+        }
+
     }
 
 

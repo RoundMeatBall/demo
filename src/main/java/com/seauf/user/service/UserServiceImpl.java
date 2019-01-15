@@ -23,8 +23,9 @@ public class UserServiceImpl implements UserService {
     public Long createUser() {
         User user = new User();
         user.setName("lynn");
-        user.setId(00001L);
+        System.out.println("id before:" + user.getId());
         Long result = userMapper.insert(user);
+        System.out.println("id after:" + user.getId());
         return result;
     }
 
