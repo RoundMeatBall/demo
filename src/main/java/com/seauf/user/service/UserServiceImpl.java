@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    private UserMapper userMapper;
+//    @Autowired
+//    private UserMapper userMapper;
 
     public String getUserInfo(){
         User user = new User();
@@ -24,9 +24,9 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setName("lynn");
         System.out.println("id before:" + user.getId());
-        Long result = userMapper.insert(user);
+//        Long result = userMapper.insert(user);
         System.out.println("id after:" + user.getId());
-        return result;
+        return 1L;
     }
 
 }
