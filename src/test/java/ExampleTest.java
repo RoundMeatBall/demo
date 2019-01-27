@@ -15,8 +15,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author: Mr.lynn
@@ -84,14 +83,19 @@ public class ExampleTest<T> extends BaseTest{
     }
 
     @Test
+    public void testSelectUser(){
+        userService.getUserInfo();
+    }
+
+    @Test
     public void testSqlSession(){
-        ApplicationContext applicationContex = new ClassPathXmlApplicationContext("spring-beans.xml");
-        System.out.println(applicationContex.getBean("userMapper"));
+//        ApplicationContext applicationContex = new ClassPathXmlApplicationContext("spring-beans.xml");
+//        System.out.println(applicationContex.getBean("userMapper"));
 //        userService.createUser();
         //读取mybatis-config.xml文件
         InputStream resourceAsStream = null;
         try {
-            resourceAsStream = Resources.getResourceAsStream("data-source.xml");
+            resourceAsStream = Resources.getResourceAsStream("mybatis-config1.xml");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -103,8 +107,7 @@ public class ExampleTest<T> extends BaseTest{
         try {
             sqlSession=sqlSessionFactory.openSession();
             UserMapper userMapper=sqlSession.getMapper(UserMapper.class);
-            User user=userMapper.getUser();
-            System.out.println(user.getId()+":"+user.getName()+":"+user.getBirth());
+            userMapper.insert(new User());
             sqlSession.commit();
         } catch (Exception e) {
             // TODO Auto-generated catch block
@@ -115,6 +118,9 @@ public class ExampleTest<T> extends BaseTest{
         }
 
     }
+
+
+
 
 
 

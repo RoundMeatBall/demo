@@ -14,7 +14,7 @@
         `ID`,`NAME`,`NICK_NAME`,`BIRYH`,`CREATED_BY`,`CREATE_TIME`,`LAST_UPDATED_BY`,`LAST_UPDATED_TIME`
     </sql>
 
-    <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="com.seauf.user.po.User">
+    <insert id="insert">
         INSERT INTO
         base.sys_user
         (
